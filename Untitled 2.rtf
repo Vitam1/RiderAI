@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww28900\viewh17540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\
+  <title>Student Roster Spinner</title>\
+  <style>\
+    body \{\
+      font-family: sans-serif;\
+      display: flex;\
+      flex-direction: column;\
+      align-items: center;\
+      padding: 40px;\
+      background: #f0f0f0;\
+    \}\
+    #wheel \{\
+      width: 300px;\
+      height: 300px;\
+      border: 8px solid #444;\
+      border-radius: 50%;\
+      position: relative;\
+      margin-bottom: 20px;\
+      transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);\
+      background: white;\
+      overflow: hidden;\
+    \}\
+    .segment \{\
+      position: absolute;\
+      width: 50%;\
+      height: 50%;\
+      left: 50%;\
+      top: 50%;\
+      transform-origin: 0% 100%;\
+      text-align: right;\
+      padding-right: 10px;\
+      color: white;\
+      font-weight: bold;\
+      font-size: 11px;\
+      display: flex;\
+      align-items: center;\
+      justify-content: flex-end;\
+      writing-mode: vertical-rl;\
+      text-orientation: mixed;\
+      overflow-wrap: break-word;\
+    \}\
+    #spinBtn, #resetBtn \{\
+      padding: 10px 20px;\
+      font-size: 18px;\
+      cursor: pointer;\
+      background: #007bff;\
+      color: white;\
+      border: none;\
+      border-radius: 8px;\
+      margin: 5px;\
+    \}\
+    #pointer \{\
+      width: 0; \
+      height: 0; \
+      border-left: 20px solid transparent;\
+      border-right: 20px solid transparent;\
+      border-bottom: 30px solid red;\
+      position: absolute;\
+      top: -40px;\
+      left: 130px;\
+    \}\
+    #selected \{\
+      margin-top: 20px;\
+      font-size: 20px;\
+      font-weight: bold;\
+      text-align: center;\
+    \}\
+  </style>\
+</head>\
+<body>\
+  <h1>
+\f1 \uc0\u55356 \u57249 
+\f0  Student Picker</h1>\
+  <div id="wheel-container" style="position:relative;">\
+    <div id="pointer"></div>\
+    <div id="wheel"></div>\
+  </div>\
+  <div>\
+    <button id="spinBtn">Spin</button>\
+    <button id="resetBtn">Reset</button>\
+  </div>\
+  <div id="selected"></div>\
+\
+  <script>\
+    const students = [\
+      "Jillian M. Adubato",\
+      "Samuel DArcangelis",\
+      "Nathaniel Denninger",\
+      "Gavin Dower",\
+      "Sophia Ilene Fliegler",\
+      "Esperanza C. Guerriero",\
+      "Kayla R. Haynes",\
+      "Nicolas C. Iannucci",\
+      "Sean P. Kagel",\
+      "Ozge Kapiyoldas",\
+      "Miabella E. Mecionis",\
+      "Joshua J. Montovano Hyman",\
+      "Amanda G. Ondrejcak",\
+      "Ava Siciliano"\
+    ];\
+\
+    const wheel = document.getElementById("wheel");\
+    const anglePerStudent = 360 / students.length;\
+    let currentRotation = 0;\
+    let pickedIndices = [];\
+\
+    // Create segments\
+    students.forEach((student, i) => \{\
+      const segment = document.createElement("div");\
+      segment.className = "segment";\
+      segment.innerText = student;\
+      const rotate = i * anglePerStudent;\
+      segment.style.transform = `rotate($\{rotate\}deg) skewY(-$\{90 - angle\
+}
